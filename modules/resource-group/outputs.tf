@@ -1,8 +1,8 @@
 output "resource_group" {
-  description = "Azure resource group"
+  description = "Deployment Azure resource group"
   value = {
-    id       = azurerm_resource_group.this.id
-    name     = azurerm_resource_group.this.name
-    location = azurerm_resource_group.this.location
+    id       = azurerm_resource_group.deployment_rg.id
+    name     = azurerm_resource_group.deployment_rg.name
+    location = azurerm_resource_group.deployment_rg.location
   }
 }
