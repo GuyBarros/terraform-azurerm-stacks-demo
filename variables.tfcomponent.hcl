@@ -16,14 +16,17 @@ variable "identity_token" {
 variable "client_id" {
   type        = string
   description = "Azure app registration client ID"
+  ephemeral = true
 }
 
 variable "subscription_id" {
   type        = string
   description = "Azure subscription ID"
+  ephemeral = true
 }
 
 variable "tenant_id" {
   type        = string
   description = "Azure tenant ID"
+  ephemeral = true
 }
