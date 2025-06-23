@@ -5,7 +5,7 @@ identity_token "azurerm" {
 deployment "demo" {
   inputs = {
     location    = "ukwest2"
-    esource_group_name = "demo"
+    resource_group_name = "demo"
 
     identity_token  = identity_token.azurerm.jwt
     client_id       = "638e629e-c5af-46e4-a5ad-fbf878019830"

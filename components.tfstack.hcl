@@ -3,7 +3,7 @@ component "resource_group" {
 
   inputs = {
     location    = var.location
-    name_suffix = var.name_suffix
+    resource_group_name = var.resource_group_name
   }
 
   providers = {

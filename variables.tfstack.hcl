@@ -3,11 +3,10 @@ variable "location" {
   description = "Azure location name"
 }
 
-variable "name_suffix" {
+variable "resource_group_name" {
+  description = "List of resource group names to create"
   type        = string
-  description = "Name suffix for resource names"
 }
-
 variable "identity_token" {
   type        = string
   ephemeral   = true
