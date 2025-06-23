@@ -8,8 +8,8 @@ variable "name_suffix" {
   description = "Name suffix for resource names"
 }
 
-variable "identity_token" { 
-  type        = string 
+variable "identity_token" {
+  type        = string
   ephemeral   = true
   description = "Identity token for provider authentication"
 }
