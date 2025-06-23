@@ -1,6 +1,3 @@
-provider "azurerm" {
-   
-}
 
 # Data source to get the current subscription ID and tenant ID
 data "azurerm_subscription" "primary" {}
