@@ -1,12 +1,4 @@
-variable "location" {
-  type        = string
-  description = "Azure location name"
-}
-
-variable "resource_group_name" {
-  description = "List of resource group names to create"
-  type        = string
-}
+########## WIF Integration Variables ##########
 variable "identity_token" {
   type        = string
   ephemeral   = true
@@ -29,6 +21,23 @@ variable "tenant_id" {
   type        = string
   description = "Azure tenant ID"
   ephemeral = true
+}
+
+######## Component Resource Group Variables ########
+
+variable "location" {
+  type        = string
+  description = "Azure location name"
+}
+
+variable "resource_group_name" {
+  description = "List of resource group names to create"
+  type        = string
+}
+######### Component Part01-base Variables #########
+variable "tags" {
+  type        = map(string)
+  description = "A map of tags to add to all resources"
 }
 
 variable "address_space" {
@@ -133,4 +142,9 @@ variable "subnets" {
  
 DESCRIPTION
 
+}
+
+variable "scale_set_name" {
+  description = "The name of the Virtual Machine Scale Set"
+  type        = string
 }

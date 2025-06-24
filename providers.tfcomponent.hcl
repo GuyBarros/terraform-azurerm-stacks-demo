@@ -7,20 +7,24 @@ required_providers {
     source  = "hashicorp/random"
     version = "~> 3.6.3"
   }
-  azapi = {
-    source  = "azure/azapi"
-    version = "~> 2.4.0"
-  }
-  modtm = {
-    source  = "azure/modtm"
-     version = "~> 0.3.5"
-  }
+  # azapi = {
+  #   source  = "azure/azapi"
+  #   version = "~> 2.4.0"
+  # }
+  # modtm = {
+  #   source  = "azure/modtm"
+  #    version = "~> 0.3.5"
+  # }
     
 }
 
 provider "azurerm" "this" {
   config {
-    features {}
+    features {
+      resource_group {
+      prevent_deletion_if_contains_resources = false # This is to handle MCAPS or other policy driven resource creation.
+    }
+    }
     use_cli         = false
     use_oidc        = true
     oidc_token      = var.identity_token
@@ -30,5 +34,5 @@ provider "azurerm" "this" {
   }
 }
 provider "random" "this" {}
-provider "azapi" "this" {}
-provider "modtm" "this" {}
+# provider "azapi" "this" {}
+# provider "modtm" "this" {} 
