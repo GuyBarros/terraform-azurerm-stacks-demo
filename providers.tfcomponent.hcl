@@ -3,19 +3,16 @@ required_providers {
     source  = "hashicorp/azurerm"
     version = "~> 4.0"
   }
-
   random = {
     source  = "hashicorp/random"
     version = "~> 3.6.3"
   }
-   azapi = {
-      source  = "azure/azapi"
-      version = ">= 1.13, < 3"
-    }
-     modtm = {
-      source  = "azure/modtm"
-      version = "~> 0.3"
-    }
+  azapi = {
+    source  = "azure/azapi"
+  }
+  modtm = {
+    source  = "azure/modtm"
+  }
     
 }
 
