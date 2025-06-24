@@ -15,6 +15,10 @@ required_providers {
     source  = "azure/modtm"
      version = "~> 0.3.5"
   }
+  time = {
+    source  = "hashicorp/time"
+    version = "~> 0.9.1"
+  }
     
 }
 
@@ -46,3 +50,4 @@ provider "random" "this" {}
   }
  }
  provider "modtm" "this" {} 
+ provider "time" "this" {}

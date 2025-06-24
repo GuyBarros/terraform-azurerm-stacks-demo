@@ -11,6 +11,20 @@ variable "location" {
   }
 }
 
+variable "resource_name_location_short" {
+  type        = string
+  description = "The short name segment for the location"
+  default     = ""
+  validation {
+    condition     = length(var.resource_name_location_short) == 0 || can(regex("^[a-z]+$", var.resource_name_location_short))
+    error_message = "The short name segment for the location must only contain lowercase letters"
+  }
+  validation {
+    condition     = length(var.resource_name_location_short) <= 3
+    error_message = "The short name segment for the location must be 3 characters or less"
+  }
+}
+
 variable "resource_name_workload" {
   type        = string
   description = "The name segment for the workload"
@@ -48,6 +62,7 @@ variable "resource_name_sequence_start" {
     error_message = "The number must be between 1 and 999"
   }
 }
+
 variable "resource_name_templates" {
   type        = map(string)
   description = "A map of resource names to use"
@@ -58,22 +73,12 @@ variable "resource_name_templates" {
     network_security_group_name  = "nsg-$${workload}-$${environment}-$${location}-$${sequence}"
     nat_gateway_name             = "nat-$${workload}-$${environment}-$${location}-$${sequence}"
     nat_gateway_public_ip_name   = "pip-nat-$${workload}-$${environment}-$${location}-$${sequence}"
+    key_vault_name               = "kv$${workload}$${environment}$${location_short}$${sequence}$${uniqueness}"
   }
 }
 
-variable "address_space" {
-  type        = string
-  description = "The address space that is used the virtual network"
-}
 
-variable "subnets" {
-  type = map(object({
-    size                       = number
-    has_nat_gateway            = bool
-    has_network_security_group = bool
-  }))
-  description = "The subnets"
-}
+
 
 variable "tags" {
   type        = map(string)
@@ -85,3 +90,14 @@ variable "log_analytics_workspace_id" {
   description = "The resource ID of the Log Analytics workspace to use for monitoring"
 
 }
+
+variable "virtual_network_id"{
+  type        = string
+  description = "The resource ID of the virtual network to use for the subnets"
+}
+
+variable "private_endpoints_subnet_id" {
+  type        = string
+  description = "The resource ID of the subnet to use for the private endpoints"
+}
+  

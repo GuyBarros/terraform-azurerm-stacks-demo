@@ -10,3 +10,7 @@ output "resource_ids" {
     nat_gateway_public_ip   = module.nat_gateway.public_ip_resource["default"].id
   }
 }
+
+output "subnets" {
+  value = module.virtual_network.subnets
+}

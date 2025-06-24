@@ -50,22 +50,24 @@ component "part02-virtual-network" {
     modtm   = provider.modtm.this
   }
 }
+component "part03-key-vault" {
+  source = "./modules/part03-key-vault"
 
-# component "compute_scale_set" {
-# source  = "Azure/avm-res-compute-virtualmachinescaleset/azurerm"
-#   version = "0.7.1"
-#   inputs = {
-#     location    = var.location
-#     resource_group_name = component.resource_group.outputs.resource_group.name
-#     name = var.scale_set_name
-#      extension_protected_setting = {}
-#     user_data_base64 = null
-#   }
+  inputs = {
+    location    = var.location
+    resource_group_name = component.part01-base.resource_group
+    virtual_network_id = component.part02-virtual-network.virtual_network_id
+    tags = var.tags
+    log_analytics_workspace_id = component.part01-base.resource_ids.log_analytics_workspace_id
+    virtual_network_id = component.part02-virtual-network.resource_ids.virtual_network_id
+    private_endpoints_subnet_id = component.part02-virtual-network.private_endpoints_subnet_id
+  }
 
-#   providers = {
-#     azurerm = provider.azurerm.this
-#     random  = provider.random.this
-#     modtm   = provider.modtm.this
-# }
-
-# }
+  providers = {
+    azurerm = provider.azurerm.this
+    random  = provider.random.this
+    azapi   = provider.azapi.this
+    modtm   = provider.modtm.this
+    time  = provider.time.this
+  }
+}
