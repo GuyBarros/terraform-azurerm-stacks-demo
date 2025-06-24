@@ -30,24 +30,26 @@ component "part01-base" {
   }
 }
 
-# component "virtual_network" {
-#  source  = "Azure/avm-res-network-virtualnetwork/azurerm"
-#  version = "0.8.1"
+component "part02-virtual-network" {
+ source  = "./modules/part02-virtual-network"
+ 
 
-#   inputs = {
-#     location    = var.location
-#     resource_group_name = component.resource_group.outputs.resource_group.name
-#     address_space = var.address_space
-#     subnets = var.subnets
-#   }
+  inputs = {
+    location    = var.location
+    resource_group_name = component.part01-base.resource_group
+    address_space = var.address_space
+    subnets = var.subnets
+    tags = var.tags
+    log_analytics_workspace_id = component.part01-base.resource_ids.log_analytics_workspace_id
+  }
 
-#   providers = {
-#     azurerm = provider.azurerm.this
-#     random  = provider.random.this
-#     azapi   = provider.azapi.this
-#     modtm   = provider.modtm.this
-#   }
-# }
+  providers = {
+    azurerm = provider.azurerm.this
+    random  = provider.random.this
+    azapi   = provider.azapi.this
+    modtm   = provider.modtm.this
+  }
+}
 
 # component "compute_scale_set" {
 # source  = "Azure/avm-res-compute-virtualmachinescaleset/azurerm"

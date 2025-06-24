@@ -19,19 +19,25 @@ deployment "demo" {
       owner       = "tfstacks"
     }
 
-    ###
-    address_space = ["10.0.0.0/16"]
-    subnets = {
-      "subnet1" = {
-        name             = "subnet1"
-        address_prefixes = ["10.0.0.0/24"]
-      }
-      "subnet2" = {
-        name             = "subnet2"
-        address_prefixes = ["10.0.1.0/24"]
-      }
-    }
-    scale_set_name  = "demo-vmss"
+    ### Components: Part02-virtual-network
+    address_space = "10.0.0.0/22"
+subnets = {
+  AzureBastionSubnet = {
+    size                       = 26
+    has_nat_gateway            = false
+    has_network_security_group = false
+  }
+  private_endpoints = {
+    size                       = 28
+    has_nat_gateway            = false
+    has_network_security_group = true
+  }
+  virtual_machines = {
+    size                       = 24
+    has_nat_gateway            = true
+    has_network_security_group = false
+  }
+}
     identity_token  = identity_token.azurerm.jwt
     client_id       = store.varset.azure_vars.client_id
     subscription_id = store.varset.azure_vars.subscription_id

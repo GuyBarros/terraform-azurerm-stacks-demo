@@ -25,6 +25,7 @@ provider "azurerm" "this" {
       prevent_deletion_if_contains_resources = false # This is to handle MCAPS or other policy driven resource creation.
     }
     }
+     resource_provider_registrations = "extended"
     use_cli         = false
     use_oidc        = true
     oidc_token      = var.identity_token
