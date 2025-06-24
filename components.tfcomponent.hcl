@@ -10,3 +10,19 @@ component "resource_group" {
     azurerm = provider.azurerm.this
   }
 }
+
+component "virtual_network" {
+ source  = "Azure/avm-res-network-virtualnetwork/azurerm"
+ version = "0.8.1"
+
+  inputs = {
+    location    = var.location
+    resource_group_name = component.resource_group.outputs.resource_group.name
+    address_space = var.address_space
+    subnets = var.subnets
+  }
+
+  providers = {
+    azurerm = provider.azurerm.this
+  }
+}
