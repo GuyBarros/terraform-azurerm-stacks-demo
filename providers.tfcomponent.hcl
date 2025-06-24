@@ -8,6 +8,15 @@ required_providers {
     source  = "hashicorp/random"
     version = "~> 3.6.3"
   }
+   azapi = {
+      source  = "azure/azapi"
+      version = ">= 1.13, < 3"
+    }
+     modtm = {
+      source  = "azure/modtm"
+      version = "~> 0.3"
+    }
+    
 }
 
 provider "azurerm" "this" {
@@ -21,5 +30,6 @@ provider "azurerm" "this" {
     tenant_id       = var.tenant_id
   }
 }
-
 provider "random" "this" {}
+provider "azapi" "this" {}
+provider "modtm" "this" {}

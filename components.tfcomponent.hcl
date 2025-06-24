@@ -24,5 +24,8 @@ component "virtual_network" {
 
   providers = {
     azurerm = provider.azurerm.this
+    random  = provider.random.this
+    azapi   = provider.azapi.this
+    modtm   = provider.modtm.this
   }
 }
