@@ -3,7 +3,7 @@ identity_token "azurerm" {
 }
 
 store "varset" "azure_vars" {
-  id       = "varset-fGLMpFfDhEmc2Jyj"
+  id       = "varset-pYC9rF5ZUbdSxidj"
   category = "terraform"
 }
 

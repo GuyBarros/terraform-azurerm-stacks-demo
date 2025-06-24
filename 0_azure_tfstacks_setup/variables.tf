@@ -33,3 +33,7 @@ variable "tfc_deployment" {
   type = string
 }
 
+variable "tfc_varset_name" {
+  type    = string
+  default = "Azure Variables"
+}
