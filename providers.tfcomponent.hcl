@@ -7,14 +7,14 @@ required_providers {
     source  = "hashicorp/random"
     version = "~> 3.6.3"
   }
-  # azapi = {
-  #   source  = "azure/azapi"
-  #   version = "~> 2.4.0"
-  # }
-  # modtm = {
-  #   source  = "azure/modtm"
-  #    version = "~> 0.3.5"
-  # }
+  azapi = {
+    source  = "azure/azapi"
+    version = "~> 2.4.0"
+  }
+  modtm = {
+    source  = "azure/modtm"
+     version = "~> 0.3.5"
+  }
     
 }
 
@@ -34,5 +34,5 @@ provider "azurerm" "this" {
   }
 }
 provider "random" "this" {}
-# provider "azapi" "this" {}
-# provider "modtm" "this" {} 
+ provider "azapi" "this" {}
+ provider "modtm" "this" {} 

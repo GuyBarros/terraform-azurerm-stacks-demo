@@ -18,15 +18,15 @@ component "part01-base" {
 
   inputs = {
     location    = var.location
-    resource_group_name = var.resource_group_name
+    resource_group_name = component.resource_group.resource_group.name
     tags = var.tags
   }
 
   providers = {
     azurerm = provider.azurerm.this
     random  = provider.random.this
-    #azapi   = provider.azapi.this
-    #modtm   = provider.modtm.this
+    azapi   = provider.azapi.this
+    modtm   = provider.modtm.this
   }
 }
 
