@@ -122,6 +122,8 @@ component "part05-virtual-machine" {
     random  = provider.random.this
     azapi   = provider.azapi.this
     modtm   = provider.modtm.this
+    http    = provider.http.this
+    tls    = provider.tls.this
   }
 
 }

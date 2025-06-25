@@ -24,6 +24,10 @@ required_providers {
     source  = "hashicorp/http"
     version = "~> 3.0"
   }
+  tls = {
+    source  = "hashicorp/tls"
+    version = "~> 4.0"
+  }
 
 }
 
@@ -58,3 +62,4 @@ provider "azapi" "this" {
 provider "modtm" "this" {}
 provider "time" "this" {}
 provider "http" "this" {}
+provider "tls" "this" {} 

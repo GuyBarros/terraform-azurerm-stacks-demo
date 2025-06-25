@@ -83,19 +83,6 @@ variable "resource_name_templates" {
   }
 }
 
-variable "address_space" {
-  type        = string
-  description = "The address space that is used the virtual network"
-}
-
-variable "subnets" {
-  type = map(object({
-    size                       = number
-    has_nat_gateway            = bool
-    has_network_security_group = bool
-  }))
-  description = "The subnets"
-}
 
 variable "tags" {
   type        = map(string)
