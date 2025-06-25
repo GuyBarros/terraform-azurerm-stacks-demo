@@ -1,3 +1,12 @@
+resource "random_password" "admin_password" {
+  length           = 22
+  min_lower        = 2
+  min_numeric      = 2
+  min_special      = 2
+  min_upper        = 2
+  override_special = "!#$%&()*+,-./:;<=>?@[]^_{|}~"
+  special          = true
+}
 module "virtual_machine" {
   source  = "Azure/avm-res-compute-virtualmachine/azurerm"
   version = "0.18.0"
@@ -8,10 +17,9 @@ module "virtual_machine" {
   sku_size                   = "Standard_B1s"
   location                   = var.location
   zone                       = "1"
-  
-  generated_secrets_key_vault_secret_config = {
-    key_vault_resource_id = var.key_vault_resource_id
-  }
+ encryption_at_host_enabled = false  
+ admin_username                     = "azureuser"
+  admin_password                     = random_password.admin_password.result
 
   managed_identities = {
     system_assigned = true

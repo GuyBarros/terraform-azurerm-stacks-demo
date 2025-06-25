@@ -52,11 +52,12 @@ resource "azurerm_role_assignment" "tfc_role_assignment" {
 #
 # https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/application_federated_identity_credential
 resource "azuread_application_federated_identity_credential" "tfc_federated_credential_plan" {
+  for_each = var.tfc_deployment
   application_id = azuread_application.tfc_application.id
-  display_name   = "my-tfc-federated-credential-plan"
+  display_name   = "my-tfc-federated-credential-plan-${each.value}"
   audiences      = [var.tfc_azure_audience]
   issuer         = "https://${var.tfc_hostname}"
-  subject        = "organization:${var.tfc_organization}:project:${var.tfc_project}:stack:${var.tfc_stack}:deployment:${var.tfc_deployment}:operation:plan"
+  subject        = "organization:${var.tfc_organization}:project:${var.tfc_project}:stack:${var.tfc_stack}:deployment:${each.value}:operation:plan"
 }
 
 # Creates a federated identity credential which ensures that the given
@@ -64,10 +65,11 @@ resource "azuread_application_federated_identity_credential" "tfc_federated_cred
 #
 # https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/application_federated_identity_credential
 resource "azuread_application_federated_identity_credential" "tfc_federated_credential_apply" {
+  for_each = var.tfc_deployment
   application_id = azuread_application.tfc_application.id
-  display_name   = "my-tfc-federated-credential-apply"
+  display_name   = "my-tfc-federated-credential-apply-${each.value}"
   audiences      = [var.tfc_azure_audience]
   issuer         = "https://${var.tfc_hostname}"
-  subject        = "organization:${var.tfc_organization}:project:${var.tfc_project}:stack:${var.tfc_stack}:deployment:${var.tfc_deployment}:operation:apply"
+  subject        = "organization:${var.tfc_organization}:project:${var.tfc_project}:stack:${var.tfc_stack}:deployment:${each.value}:operation:apply"
 }
 

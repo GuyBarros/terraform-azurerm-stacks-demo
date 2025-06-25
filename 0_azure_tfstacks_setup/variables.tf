@@ -30,7 +30,7 @@ variable "tfc_stack" {
 }
 
 variable "tfc_deployment" {
-  type = string
+  type = set(string)
 }
 
 variable "tfc_varset_name" {

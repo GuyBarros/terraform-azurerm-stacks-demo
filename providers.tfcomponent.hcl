@@ -29,6 +29,8 @@ required_providers {
     version = "~> 4.0"
   }
 
+  
+
 }
 
 provider "azurerm" "this" {
