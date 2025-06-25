@@ -39,6 +39,9 @@ component "part02-virtual-network" {
 
   inputs = {
     location                   = var.location
+    resource_name_workload = var.resource_name_workload
+    resource_name_environment = var.resource_name_environment
+
     resource_group_name        = component.part01-base.resource_group
     address_space              = var.address_space
     subnets                    = var.subnets
@@ -59,6 +62,9 @@ component "part03-key-vault" {
 
   inputs = {
     location                    = var.location
+    resource_name_workload = var.resource_name_workload
+    resource_name_environment = var.resource_name_environment
+
     resource_group_name         = component.part01-base.resource_group
     tags                        = var.tags
     log_analytics_workspace_id  = component.part01-base.log_analytics_workspace_id
@@ -81,6 +87,8 @@ component "part04-storage-account" {
 
   inputs = {
     location                    = var.location
+    resource_name_workload = var.resource_name_workload
+    resource_name_environment = var.resource_name_environment
     resource_group_name         = component.part01-base.resource_group
     tags                        = var.tags
     log_analytics_workspace_id  = component.part01-base.log_analytics_workspace_id
@@ -109,6 +117,9 @@ component "part05-virtual-machine" {
 
   inputs = {
     location                    = var.location
+    resource_name_workload = var.resource_name_workload
+    resource_name_environment = var.resource_name_environment
+
     resource_group_name         = component.part01-base.resource_group
     tags                        = var.tags
     log_analytics_workspace_id  = component.part01-base.log_analytics_workspace_id
