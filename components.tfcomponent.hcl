@@ -59,8 +59,8 @@ component "part03-key-vault" {
     resource_group_name = component.part01-base.resource_group
     tags = var.tags
     log_analytics_workspace_id = component.part01-base.resource_ids.log_analytics_workspace_id
-    virtual_network_id = component.part02-virtual-network.module.virtual_network.azapi_resource.vnet.id
-    private_endpoints_subnet_id = component.part02-virtual-network.module.virtual_network.subnet["private_endpoints"].id
+    virtual_network_id = component.part02-virtual-network.module.virtual_network.azapi_resource.vnet
+    private_endpoints_subnet_id = component.part02-virtual-network.module.virtual_network.subnet["private_endpoints"]
   }
 
   providers = {
