@@ -56,7 +56,7 @@ deployment "PreProduction" {
   inputs = {
     ### Components: Resource Group
     resource_name_workload = "saug"
-    resource_name_environment = "preprod"
+    resource_name_environment = "pre"
     location            = "uksouth"
     resource_group_name = "PreProduction-rg"
     ### Components: Part01-base
@@ -140,16 +140,16 @@ deployment "Production" {
 
 }
 
-orchestrate "auto_approve" "safe_plans" {
-    # Ensure that no resource is removed.
-    check {
-        condition = context.plan.changes.remove == 0
-        reason    = "Plan is destroying ${context.plan.changes.remove} resources."
-    }
+# orchestrate "auto_approve" "safe_plans" {
+#     # Ensure that no resource is removed.
+#     check {
+#         condition = context.plan.changes.remove == 0
+#         reason    = "Plan is destroying ${context.plan.changes.remove} resources."
+#     }
 
-    # Ensure that the deployment is not your production environment. 
-    check {
-        condition = context.plan.deployment != deployment.Production
-        reason    = "Production plans are not eligible for auto_approve."
-    }
-}
+#     # Ensure that the deployment is not your production environment. 
+#     check {
+#         condition = context.plan.deployment != deployment.Production
+#         reason    = "Production plans are not eligible for auto_approve."
+#     }
+# }
