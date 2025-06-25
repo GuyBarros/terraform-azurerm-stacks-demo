@@ -11,7 +11,7 @@ module "virtual_machine" {
   encryption_at_host_enabled = var.enable_encryption_at_host # Turned off by default in this demo as requires the Microsoft.Compute/EncryptionAtHost feature to be enabled on the subscription
 
   generated_secrets_key_vault_secret_config = {
-    key_vault_resource_id = module.key_vault.resource_id
+    key_vault_resource_id = var.key_vault_resource_id
   }
 
   managed_identities = {
@@ -31,7 +31,7 @@ module "virtual_machine" {
       ip_configurations = {
         private = {
           name                          = "private"
-          private_ip_subnet_resource_id = module.virtual_network.subnets["virtual_machines"].resource_id
+          private_ip_subnet_resource_id = var.virtual_machines_subnet_id
         }
       }
     }
@@ -40,7 +40,7 @@ module "virtual_machine" {
   diagnostic_settings = local.diagnostic_settings
   tags                = var.tags
 
-  depends_on = [module.key_vault, azapi_update_resource.enable_encryption_at_host]
+  depends_on = [ azapi_update_resource.enable_encryption_at_host]
 }
 
 resource "azapi_update_resource" "enable_encryption_at_host" {

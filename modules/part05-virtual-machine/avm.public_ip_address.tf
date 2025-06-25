@@ -4,7 +4,7 @@ module "bastion_host_public_ip" {
 
   name                = local.resource_names.bastion_host_public_ip_name
   location            = var.location
-  resource_group_name = module.resource_group.name
+  resource_group_name               = local.resource_names.resource_group_name
   allocation_method   = "Static"
   sku                 = "Standard"
   diagnostic_settings = local.diagnostic_settings

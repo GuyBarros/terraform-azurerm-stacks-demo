@@ -8,19 +8,19 @@ variable "identity_token" {
 variable "client_id" {
   type        = string
   description = "Azure app registration client ID"
-  ephemeral = true
+  ephemeral   = true
 }
 
 variable "subscription_id" {
   type        = string
   description = "Azure subscription ID"
-  ephemeral = true
+  ephemeral   = true
 }
 
 variable "tenant_id" {
   type        = string
   description = "Azure tenant ID"
-  ephemeral = true
+  ephemeral   = true
 }
 
 ######## Component Resource Group Variables ########
@@ -49,21 +49,21 @@ variable "resource_name_workload" {
   type        = string
   description = "The name segment for the workload"
   default     = "demo"
- 
+
 }
 
 variable "resource_name_environment" {
   type        = string
   description = "The name segment for the environment"
   default     = "dev"
- 
+
 }
 
 variable "resource_name_sequence_start" {
   type        = number
   description = "The number to use for the resource names"
   default     = 1
- 
+
 }
 variable "resource_name_templates" {
   type        = map(string)

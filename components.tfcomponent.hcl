@@ -17,9 +17,9 @@ component "part01-base" {
   source = "./modules/part01-base"
 
   inputs = {
-    location    = var.location
+    location            = var.location
     resource_group_name = var.resource_group_name
-    tags = var.tags
+    tags                = var.tags
   }
 
   providers = {
@@ -31,19 +31,19 @@ component "part01-base" {
 }
 
 component "part02-virtual-network" {
- source  = "./modules/part02-virtual-network"
- 
+  source = "./modules/part02-virtual-network"
+
 
   inputs = {
-    location    = var.location
-    resource_group_name = component.part01-base.resource_group
-    address_space = var.address_space
-    subnets = var.subnets
-    tags = var.tags
+    location                   = var.location
+    resource_group_name        = component.part01-base.resource_group
+    address_space              = var.address_space
+    subnets                    = var.subnets
+    tags                       = var.tags
     log_analytics_workspace_id = component.part01-base.log_analytics_workspace_id
   }
 
- 
+
   providers = {
     azurerm = provider.azurerm.this
     random  = provider.random.this
@@ -55,13 +55,13 @@ component "part03-key-vault" {
   source = "./modules/part03-key-vault"
 
   inputs = {
-    location    = var.location
-    resource_group_name = component.part01-base.resource_group
-    tags = var.tags
-    log_analytics_workspace_id = component.part01-base.log_analytics_workspace_id
-    virtual_network_id = component.part02-virtual-network.virtual_network_id
+    location                    = var.location
+    resource_group_name         = component.part01-base.resource_group
+    tags                        = var.tags
+    log_analytics_workspace_id  = component.part01-base.log_analytics_workspace_id
+    virtual_network_id          = component.part02-virtual-network.virtual_network_id
     private_endpoints_subnet_id = component.part02-virtual-network.private_endpoints_subnet_id
-    key_administrator_id = var.key_administrator_id
+    key_administrator_id        = var.key_administrator_id
   }
 
   providers = {
@@ -69,7 +69,7 @@ component "part03-key-vault" {
     random  = provider.random.this
     azapi   = provider.azapi.this
     modtm   = provider.modtm.this
-    time  = provider.time.this
+    time    = provider.time.this
   }
 }
 
@@ -77,16 +77,16 @@ component "part04-storage-account" {
   source = "./modules/part04-storage-account"
 
   inputs = {
-    location    = var.location
-    resource_group_name = component.part01-base.resource_group
-    tags = var.tags
-    log_analytics_workspace_id = component.part01-base.log_analytics_workspace_id
-    virtual_network_id = component.part02-virtual-network.virtual_network_id
+    location                    = var.location
+    resource_group_name         = component.part01-base.resource_group
+    tags                        = var.tags
+    log_analytics_workspace_id  = component.part01-base.log_analytics_workspace_id
+    virtual_network_id          = component.part02-virtual-network.virtual_network_id
     private_endpoints_subnet_id = component.part02-virtual-network.private_endpoints_subnet_id
-    key_vault_resource_id = component.part03-key-vault.key_vault_resource_id
-   # key_name = component.part03-key-vault.key_name
+    key_vault_resource_id       = component.part03-key-vault.key_vault_resource_id
+    # key_name = component.part03-key-vault.key_name
     private_dns_zone_storage_account_id = component.part03-key-vault.private_dns_zone_storage_account_id
-    virtual_machines_subnet_id = component.part02-virtual-network.virtual_machines_subnet_id
+    virtual_machines_subnet_id          = component.part02-virtual-network.virtual_machines_subnet_id
 
 
   }
@@ -96,7 +96,32 @@ component "part04-storage-account" {
     random  = provider.random.this
     azapi   = provider.azapi.this
     modtm   = provider.modtm.this
-    http   = provider.http.this
+    http    = provider.http.this
   }
-  
+
+}
+
+component "part05-virtual-machine" {
+  source = "./modules/part05-virtual-machine"
+
+  inputs = {
+    location                    = var.location
+    resource_group_name         = component.part01-base.resource_group
+    tags                        = var.tags
+    log_analytics_workspace_id  = component.part01-base.log_analytics_workspace_id
+    virtual_network_id          = component.part02-virtual-network.virtual_network_id
+    virtual_machines_subnet_id  = component.part02-virtual-network.virtual_machines_subnet_id
+    private_endpoints_subnet_id = component.part02-virtual-network.private_endpoints_subnet_id
+    azure_bastion_subnet_id     = component.part02-virtual-network.azure_bastion_subnet_id
+    key_vault_resource_id       = component.part03-key-vault.key_vault_resource_id
+    # key_name = component.part03-key-vault.key_name
+  }
+
+  providers = {
+    azurerm = provider.azurerm.this
+    random  = provider.random.this
+    azapi   = provider.azapi.this
+    modtm   = provider.modtm.this
+  }
+
 }

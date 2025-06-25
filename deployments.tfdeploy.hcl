@@ -21,30 +21,30 @@ deployment "demo" {
 
     ### Components: Part02-virtual-network
     address_space = "10.0.0.0/22"
-subnets = {
-  AzureBastionSubnet = {
-    size                       = 26
-    has_nat_gateway            = false
-    has_network_security_group = false
-  }
-  private_endpoints = {
-    size                       = 28
-    has_nat_gateway            = false
-    has_network_security_group = true
-  }
-  virtual_machines = {
-    size                       = 24
-    has_nat_gateway            = true
-    has_network_security_group = false
-  }
-}
+    subnets = {
+      AzureBastionSubnet = {
+        size                       = 26
+        has_nat_gateway            = false
+        has_network_security_group = false
+      }
+      private_endpoints = {
+        size                       = 28
+        has_nat_gateway            = false
+        has_network_security_group = true
+      }
+      virtual_machines = {
+        size                       = 24
+        has_nat_gateway            = true
+        has_network_security_group = false
+      }
+    }
     identity_token  = identity_token.azurerm.jwt
     client_id       = store.varset.azure_vars.client_id
     subscription_id = store.varset.azure_vars.subscription_id
     tenant_id       = store.varset.azure_vars.tenant_id
 
-### Components: Part03-key-vault
-  key_administrator_id = "f097f867-8db9-4aa2-ad02-57885ad0ff84"
+    ### Components: Part03-key-vault
+    key_administrator_id = "f097f867-8db9-4aa2-ad02-57885ad0ff84"
 
   }
 

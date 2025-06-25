@@ -134,3 +134,7 @@ variable "azure_bastion_subnet_id" {
   description = "The resource ID of the subnet to use for the Azure Bastion host"
 }
 
+variable "key_vault_resource_id" {
+  type        = string
+  description = "The resource ID of the Key Vault to use for the storage account secrets"
+  }
