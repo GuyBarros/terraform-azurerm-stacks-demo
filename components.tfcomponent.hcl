@@ -40,7 +40,7 @@ component "part02-virtual-network" {
     address_space = var.address_space
     subnets = var.subnets
     tags = var.tags
-    log_analytics_workspace_id = component.part01-base.resource_ids.log_analytics_workspace_id
+    log_analytics_workspace_id = component.part01-base.log_analytics_workspace_id
   }
 
  
@@ -58,7 +58,7 @@ component "part03-key-vault" {
     location    = var.location
     resource_group_name = component.part01-base.resource_group
     tags = var.tags
-    log_analytics_workspace_id = component.part01-base.resource_ids.log_analytics_workspace_id
+    log_analytics_workspace_id = component.part01-base.log_analytics_workspace_id
     virtual_network_id = component.part02-virtual-network.virtual_network_id
     private_endpoints_subnet_id = component.part02-virtual-network.private_endpoints_subnet_id
     key_administrator_id = var.key_administrator_id
@@ -80,11 +80,11 @@ component "part04-storage-account" {
     location    = var.location
     resource_group_name = component.part01-base.resource_group
     tags = var.tags
-    log_analytics_workspace_id = component.part01-base.resource_ids.log_analytics_workspace_id
+    log_analytics_workspace_id = component.part01-base.log_analytics_workspace_id
     virtual_network_id = component.part02-virtual-network.virtual_network_id
     private_endpoints_subnet_id = component.part02-virtual-network.private_endpoints_subnet_id
     key_vault_resource_id = component.part03-key-vault.key_vault_resource_id
-    key_name = component.part03-key-vault.key_name
+   # key_name = component.part03-key-vault.key_name
     private_dns_zone_storage_account_id = component.part03-key-vault.private_dns_zone_storage_account_id
     virtual_machines_subnet_id = component.part02-virtual-network.virtual_machines_subnet_id
 

@@ -8,16 +8,16 @@ module "storage_account" {
   resource_group_name               = local.resource_names.resource_group_name
   infrastructure_encryption_enabled = true
 
-  managed_identities = {
-    system_assigned            = true
-    user_assigned_resource_ids = [module.user_assigned_managed_identity.resource_id]
-  }
+  # managed_identities = {
+  #   system_assigned            = true
+  #   user_assigned_resource_ids = [module.user_assigned_managed_identity.resource_id]
+  # }
 
-  customer_managed_key = {
-    key_vault_resource_id  = var.key_vault_resource_id
-    key_name               = var.key_name
-    # user_assigned_identity = { resource_id = module.user_assigned_managed_identity.resource_id }
-  }
+  # customer_managed_key = {
+  #   key_vault_resource_id  = var.key_vault_resource_id
+  #   key_name               = var.key_name
+  #   # user_assigned_identity = { resource_id = module.user_assigned_managed_identity.resource_id }
+  # }
 
   containers = {
     demo = {

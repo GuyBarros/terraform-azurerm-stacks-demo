@@ -106,10 +106,10 @@ variable "key_vault_resource_id" {
   description = "The resource ID of the Key Vault to use for the storage account secrets"
   }
 
-variable "key_name" {
-  type        = string
-  description = "The name of the key to use for the storage account secrets"
-}
+# variable "key_name" {
+#   type        = string
+#   description = "The name of the key to use for the storage account secrets"
+# }
 
 variable "private_dns_zone_storage_account_id" {
   type        = string
