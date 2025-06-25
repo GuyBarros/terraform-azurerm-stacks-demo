@@ -16,7 +16,7 @@ module "storage_account" {
   customer_managed_key = {
     key_vault_resource_id  = var.key_vault_resource_id
     key_name               = var.key_name
-    user_assigned_identity = { resource_id = module.user_assigned_managed_identity.resource_id }
+    # user_assigned_identity = { resource_id = module.user_assigned_managed_identity.resource_id }
   }
 
   containers = {
