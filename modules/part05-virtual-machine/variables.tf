@@ -67,22 +67,45 @@ variable "resource_name_templates" {
   type        = map(string)
   description = "A map of resource names to use"
   default = {
-    resource_group_name          = "rg-$${workload}-$${environment}-$${location}-$${sequence}"
-    log_analytics_workspace_name = "law-$${workload}-$${environment}-$${location}-$${sequence}"
-    virtual_network_name         = "vnet-$${workload}-$${environment}-$${location}-$${sequence}"
-    network_security_group_name  = "nsg-$${workload}-$${environment}-$${location}-$${sequence}"
-    nat_gateway_name             = "nat-$${workload}-$${environment}-$${location}-$${sequence}"
-    nat_gateway_public_ip_name   = "pip-nat-$${workload}-$${environment}-$${location}-$${sequence}"
-    key_vault_name               = "kv$${workload}$${environment}$${location_short}$${sequence}$${uniqueness}"
+    resource_group_name                 = "rg-$${workload}-$${environment}-$${location}-$${sequence}"
+    log_analytics_workspace_name        = "law-$${workload}-$${environment}-$${location}-$${sequence}"
+    virtual_network_name                = "vnet-$${workload}-$${environment}-$${location}-$${sequence}"
+    network_security_group_name         = "nsg-$${workload}-$${environment}-$${location}-$${sequence}"
+    nat_gateway_name                    = "nat-$${workload}-$${environment}-$${location}-$${sequence}"
+    nat_gateway_public_ip_name          = "pip-nat-$${workload}-$${environment}-$${location}-$${sequence}"
+    key_vault_name                      = "kv$${workload}$${environment}$${location_short}$${sequence}$${uniqueness}"
+    storage_account_name                = "sto$${workload}$${environment}$${location_short}$${sequence}$${uniqueness}"
+    user_assigned_managed_identity_name = "uami-$${workload}-$${environment}-$${location}-$${sequence}"
+    virtual_machine_name                = "vm-$${workload}-$${environment}-$${location}-$${sequence}"
+    network_interface_name              = "nic-$${workload}-$${environment}-$${location}-$${sequence}"
+    bastion_host_public_ip_name         = "pip-bas-$${workload}-$${environment}-$${location}-$${sequence}"
+    bastion_host_name                   = "bas-$${workload}-$${environment}-$${location}-$${sequence}"
   }
 }
 
+variable "address_space" {
+  type        = string
+  description = "The address space that is used the virtual network"
+}
 
-
+variable "subnets" {
+  type = map(object({
+    size                       = number
+    has_nat_gateway            = bool
+    has_network_security_group = bool
+  }))
+  description = "The subnets"
+}
 
 variable "tags" {
   type        = map(string)
   description = "A map of tags to add to all resources"
+}
+
+variable "enable_encryption_at_host" {
+  type        = bool
+  description = "Enable encryption at host"
+  default     = false
 }
 
 variable "log_analytics_workspace_id" {
@@ -96,7 +119,17 @@ variable "virtual_network_id"{
   description = "The resource ID of the virtual network to use for the subnets"
 }
 
+variable "virtual_machines_subnet_id" {
+  type        = string
+  description = "The resource ID of the subnet to use for the virtual machines"
+}
+
 variable "private_endpoints_subnet_id" {
   type        = string
   description = "The resource ID of the subnet to use for the private endpoints"
+}
+
+variable "azure_bastion_subnet_id" {
+  type        = string
+  description = "The resource ID of the subnet to use for the Azure Bastion host
 }

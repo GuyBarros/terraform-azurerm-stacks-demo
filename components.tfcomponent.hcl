@@ -1,24 +1,24 @@
 
 
-component "resource_group" {
-  source = "./modules/resource-group"
+# component "resource_group" {
+#   source = "./modules/resource-group"
 
-  inputs = {
-    location    = var.location
-    resource_group_name = var.resource_group_name
-  }
+#   inputs = {
+#     location    = var.location
+#     resource_group_name = var.resource_group_name
+#   }
 
-  providers = {
-    azurerm = provider.azurerm.this
-  }
-}
+#   providers = {
+#     azurerm = provider.azurerm.this
+#   }
+# }
 
 component "part01-base" {
   source = "./modules/part01-base"
 
   inputs = {
     location    = var.location
-    resource_group_name = component.resource_group.resource_group.name
+    resource_group_name = var.resource_group_name
     tags = var.tags
   }
 
@@ -85,6 +85,8 @@ component "part04-storage-account" {
     key_vault_resource_id = component.part03-key-vault.key_vault_resource_id
     key_name = component.part03-key-vault.key_name
     private_dns_zone_storage_account_id = component.part03-key-vault.private_dns_zone_storage_account_id
+    virtual_machines_subnet_id = component.part02-virtual-network.virtual_machines_subnet_id
+
 
   }
 
