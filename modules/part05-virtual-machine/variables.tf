@@ -131,5 +131,5 @@ variable "private_endpoints_subnet_id" {
 
 variable "azure_bastion_subnet_id" {
   type        = string
-  description = "The resource ID of the subnet to use for the Azure Bastion host
+  description = "The resource ID of the subnet to use for the Azure Bastion host"
 }
