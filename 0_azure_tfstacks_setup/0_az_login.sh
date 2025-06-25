@@ -5,7 +5,7 @@
 
 # if you requested the correct AD Roles, the your tenant ID will be this
 # az account clear
-az login --tenant 237fbc04-c52a-458b-af97-eaf7157c0cd4
+az login --tenant 237fbc04-c52a-458b-af97-eaf7157c0cd4 --use-device-code
 # choose the correct subscription
 
 #Tenant: 237fbc04-c52a-458b-af97-eaf7157c0cd4
