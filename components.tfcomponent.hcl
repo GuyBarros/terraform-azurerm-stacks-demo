@@ -17,6 +17,9 @@ component "part01-base" {
   source = "./modules/part01-base"
 
   inputs = {
+    resource_name_workload = var.resource_name_workload
+    resource_name_environment = var.resource_name_environment
+
     location            = var.location
     resource_group_name = var.resource_group_name
     tags                = var.tags
