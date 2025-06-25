@@ -11,6 +11,8 @@ store "varset" "azure_vars" {
 deployment "Development" {
   inputs = {
     ### Components: Resource Group
+    resource_name_workload = "saug"
+    resource_name_environment = "dev"
     location            = "uksouth"
     resource_group_name = "Development-rg"
     ### Components: Part01-base
@@ -53,6 +55,8 @@ deployment "Development" {
 deployment "PreProduction" {
   inputs = {
     ### Components: Resource Group
+    resource_name_workload = "saug"
+    resource_name_environment = "preprod"
     location            = "uksouth"
     resource_group_name = "PreProduction-rg"
     ### Components: Part01-base
@@ -95,6 +99,8 @@ deployment "PreProduction" {
 deployment "Production" {
   inputs = {
     ### Components: Resource Group
+    resource_name_workload = "saug"
+    resource_name_environment = "prod"
     location            = "uksouth"
     resource_group_name = "Production-rg"
     ### Components: Part01-base
