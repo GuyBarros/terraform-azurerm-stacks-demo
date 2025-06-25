@@ -60,8 +60,8 @@ component "part03-key-vault" {
     virtual_network_id = component.part02-virtual-network.virtual_network_id
     tags = var.tags
     log_analytics_workspace_id = component.part01-base.resource_ids.log_analytics_workspace_id
-    virtual_network_id = component.part02-virtual-network.output.resource_ids.virtual_network
-    private_endpoints_subnet_id = component.part02-virtual-network.output.private_endpoints_subnet_id
+    virtual_network_id = component.part02-virtual-network.module.virtual_network.resource_id
+    private_endpoints_subnet_id = component.part02-virtual-network.virtual_network.subnets["private_endpoints"].resource_id
   }
 
   providers = {
