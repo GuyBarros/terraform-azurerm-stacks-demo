@@ -30,6 +30,7 @@ provider "azurerm" "this" {
     }
     }
      resource_provider_registrations = "extended"
+      storage_use_azuread             = true
     use_cli         = false
     use_oidc        = true
     oidc_token      = var.identity_token
