@@ -14,7 +14,7 @@ deployment "Development" {
     resource_name_workload = "saug"
     resource_name_environment = "dev"
     location            = "uksouth"
-    resource_group_name = "Development-rg"
+    resource_group_name = "Saug-rg"
     ### Components: Part01-base
     tags = {
       environment = "Development"
