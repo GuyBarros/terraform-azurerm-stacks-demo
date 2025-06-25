@@ -11,6 +11,14 @@ output "resource_ids" {
   }
 }
 
+output "virtual_network_id" {
+  value = module.virtual_network.resource_id
+}
+
 output "subnets" {
   value = module.virtual_network.subnets
+}
+
+output "private_endpoints_subnet_id" {
+  value = module.virtual_network.subnets["private_endpoints"].resource_id
 }
