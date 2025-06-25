@@ -43,6 +43,7 @@ component "part02-virtual-network" {
     log_analytics_workspace_id = component.part01-base.resource_ids.log_analytics_workspace_id
   }
 
+ 
   providers = {
     azurerm = provider.azurerm.this
     random  = provider.random.this
@@ -59,8 +60,8 @@ component "part03-key-vault" {
     virtual_network_id = component.part02-virtual-network.virtual_network_id
     tags = var.tags
     log_analytics_workspace_id = component.part01-base.resource_ids.log_analytics_workspace_id
-    virtual_network_id = component.part02-virtual-network.outputs.resource_ids.virtual_network
-    private_endpoints_subnet_id = component.part02-virtual-network.outputs.private_endpoints_subnet_id
+    virtual_network_id = component.part02-virtual-network.output.resource_ids.virtual_network
+    private_endpoints_subnet_id = component.part02-virtual-network.output.private_endpoints_subnet_id
   }
 
   providers = {
