@@ -91,3 +91,8 @@ variable "subnets" {
   }))
   description = "The subnets"
 }
+
+variable "key_administrator_id" {
+  type        = string
+  description = "The object ID of the user to assign as the Key Administrator for the Key Vault"
+}

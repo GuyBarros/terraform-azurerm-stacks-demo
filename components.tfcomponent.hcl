@@ -61,6 +61,7 @@ component "part03-key-vault" {
     log_analytics_workspace_id = component.part01-base.resource_ids.log_analytics_workspace_id
     virtual_network_id = component.part02-virtual-network.virtual_network_id
     private_endpoints_subnet_id = component.part02-virtual-network.private_endpoints_subnet_id
+    key_administrator_id = var.key_administrator_id
   }
 
   providers = {

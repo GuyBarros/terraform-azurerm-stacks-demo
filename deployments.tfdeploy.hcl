@@ -42,5 +42,11 @@ subnets = {
     client_id       = store.varset.azure_vars.client_id
     subscription_id = store.varset.azure_vars.subscription_id
     tenant_id       = store.varset.azure_vars.tenant_id
+
+### Components: Part03-key-vault
+  key_administrator_id = "f097f867-8db9-4aa2-ad02-57885ad0ff84"
+
   }
+
+
 }

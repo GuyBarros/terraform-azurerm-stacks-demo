@@ -33,11 +33,10 @@ module "key_vault" {
     }
   }
 
-
   role_assignments = {
     deployment_user_secrets = {
       role_definition_id_or_name = "Key Vault Administrator"
-      principal_id               = data.azurerm_client_config.current.object_id
+      principal_id               = var.key_administrator_id
     }
   }
 

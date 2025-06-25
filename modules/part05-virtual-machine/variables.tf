@@ -133,3 +133,4 @@ variable "azure_bastion_subnet_id" {
   type        = string
   description = "The resource ID of the subnet to use for the Azure Bastion host"
 }
+
