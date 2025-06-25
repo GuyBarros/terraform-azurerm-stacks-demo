@@ -10,13 +10,13 @@ module "network_security_group" {
     no_internet = {
       access                     = "Deny"
       direction                  = "Outbound"
-      name                       = "block-internet-traffic"
+      name                       = "block-internet-traffic on port 22"
       priority                   = 100
       protocol                   = "*"
       destination_address_prefix = "Internet"
-      destination_port_range     = "*"
+      destination_port_range     = "22"
       source_address_prefix      = "*"
-      source_port_range          = "*"
+      source_port_range          = "22"
     }
   }
 
