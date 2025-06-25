@@ -19,6 +19,11 @@ required_providers {
     source  = "hashicorp/time"
     version = "~> 0.9.1"
   }
+
+  http = {
+    source  = "hashicorp/http"
+    version = "~> 3.0"
+  }
     
 }
 
@@ -52,3 +57,4 @@ provider "random" "this" {}
  }
  provider "modtm" "this" {} 
  provider "time" "this" {}
+ provider "http" "this" { }

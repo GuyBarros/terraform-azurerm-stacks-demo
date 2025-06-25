@@ -17,6 +17,23 @@ module "key_vault" {
     }
   }
 
+    keys = {
+    cmk_for_storage_account = {
+      key_opts = [
+        "decrypt",
+        "encrypt",
+        "sign",
+        "unwrapKey",
+        "verify",
+        "wrapKey"
+      ]
+      key_type = "RSA"
+      name     = "cmk-for-storage-account"
+      key_size = 2048
+    }
+  }
+
+
   # role_assignments = {
   #   deployment_user_secrets = {
   #     role_definition_id_or_name = "Key Vault Administrator"

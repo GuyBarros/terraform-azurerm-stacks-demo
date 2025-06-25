@@ -71,3 +71,29 @@ component "part03-key-vault" {
     time  = provider.time.this
   }
 }
+
+component "part04-storage-account" {
+  source = "./modules/part04-storage-account"
+
+  inputs = {
+    location    = var.location
+    resource_group_name = component.part01-base.resource_group
+    tags = var.tags
+    log_analytics_workspace_id = component.part01-base.resource_ids.log_analytics_workspace_id
+    virtual_network_id = component.part02-virtual-network.virtual_network_id
+    private_endpoints_subnet_id = component.part02-virtual-network.private_endpoints_subnet_id
+    key_vault_resource_id = component.part03-key-vault.key_vault_resource_id
+    key_name = component.part03-key-vault.key_name
+    private_dns_zone_storage_account_id = component.part03-key-vault.private_dns_zone_storage_account_id
+
+  }
+
+  providers = {
+    azurerm = provider.azurerm.this
+    random  = provider.random.this
+    azapi   = provider.azapi.this
+    modtm   = provider.modtm.this
+    http   = provider.http.this
+  }
+  
+}
