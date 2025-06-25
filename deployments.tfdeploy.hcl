@@ -18,7 +18,7 @@ deployment "Development" {
     ### Components: Part01-base
     tags = {
       environment = "Development"
-      owner       = "tfstacks"
+      owner       = "SAU"
     }
 
     ### Components: Part02-virtual-network
