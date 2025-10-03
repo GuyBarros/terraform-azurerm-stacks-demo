@@ -48,6 +48,8 @@ deployment "Development" {
     ### Components: Part03-key-vault
     key_administrator_id = "f097f867-8db9-4aa2-ad02-57885ad0ff84"
 
+    destroy = true
+
   }
 
 }
